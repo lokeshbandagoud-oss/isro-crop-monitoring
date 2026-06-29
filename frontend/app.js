@@ -330,7 +330,7 @@ async function analyzeCrop(){
 
         const response=await fetch(
 
-            "https://isro-crop-monitoring.onrender.com",
+            "https://isro-crop-monitoring.onrender.com/analyze", 
 
             {
 
