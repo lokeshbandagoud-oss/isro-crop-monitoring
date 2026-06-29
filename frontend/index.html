@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>ISRO AI Crop Monitoring Platform</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+    <link rel="stylesheet"
+        href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css"/>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+
+    <script src="https://unpkg.com/leaflet-geometryutil"></script>
+
+</head>
+
+<body>
+
+<div class="header">
+
+    <h1>🛰️ ISRO AI Crop Monitoring Platform</h1>
+
+    <p>
+        Satellite Based Crop Intelligence & Smart Irrigation Advisory
+    </p>
+
+</div>
+
+<div class="search-panel">
+
+    <input
+        id="locationInput"
+        type="text"
+        placeholder="Search Village, Taluk, District..."
+    >
+ <button onclick="getCurrentLocation()">
+
+ 📍 Current Location
+ </button>
+
+    <button onclick="searchLocation()">
+        🔍 Search
+    </button>
+    <button onclick="clearField()">
+
+🗑 Clear Field
+
+</button>
+<button onclick="resetMap()">
+
+🛰 Reset
+
+</button>
+
+</div>
+
+<div class="main-container">
+
+    <!-- LEFT COLUMN -->
+    <div class="left-column">
+
+        <div class="map-panel">
+
+            <div id="map"></div>
+            
+
+            <div class="legend">
+
+                <h3>Field Health</h3>
+
+                <div><span class="green-box"></span> Healthy</div>
+
+                <div><span class="orange-box"></span> Moderate</div>
+
+                <div><span class="red-box"></span> Poor</div>
+
+            </div>
+
+        </div>
+
+        <!-- Project Overview -->
+        <div id="projectOverview">
+
+        
+<h2>🛰 Project Overview</h2>
+
+<p>
+The <b>ISRO AI Crop Monitoring Platform</b> is an AI-powered precision agriculture system that combines
+<b>Google Earth Engine</b>, <b>Sentinel-2 Satellite Imagery</b>, and <b>Artificial Intelligence</b> to monitor crop health and provide smart irrigation recommendations. Farmers can search their location, draw their field boundary, and receive field-specific analysis through an interactive GIS dashboard.
+</p>
+
+<p>
+The platform calculates <b>NDVI</b> and <b>NDMI</b> indices to evaluate vegetation health and crop moisture. Using these indices, the system estimates crop type, growth stage, moisture stress, water balance, and irrigation requirements to support precision farming and sustainable agriculture.
+</p>
+
+<br>
+
+<h2>🛰 Technologies Used</h2>
+
+<p>🌍 Google Earth Engine (GEE)</p>
+<p>🛰 Sentinel-2 MSI Satellite Imagery</p>
+<p>🐍 Python & FastAPI</p>
+<p>📍 Leaflet.js & Leaflet Draw</p>
+<p>🌐 OpenStreetMap Nominatim API</p>
+<p>🤖 Artificial Intelligence</p>
+<p>🌿 NDVI & 💧 NDMI Analysis</p>
+
+<br>
+
+<h2>📐 Indices & Formulae</h2>
+
+<p>
+<b>NDVI (Crop Health)</b><br><br>
+
+NDVI = (NIR − Red) / (NIR + Red)<br><br>
+
+NIR = Band 8<br>
+Red = Band 4
+</p>
+
+<br>
+
+<p>
+<b>NDMI (Crop Moisture)</b><br><br>
+
+NDMI = (NIR − SWIR) / (NIR + SWIR)<br><br>
+
+NIR = Band 8<br>
+SWIR = Band 11
+</p>
+
+<br>
+
+<h2>⚙ Project Workflow</h2>
+
+<p>
+👨‍🌾 Farmer
+→ 🗺 Field Selection
+→ 🛰️Sentinel-2 Satellite
+→ 🌍 Google Earth Engine
+→ 🌿 NDVI & NDMI Analysis
+→ 🤖 AI Crop Analysis
+→ 🚿 Smart Irrigation Recommendation
+</p>
+
+<br>
+
+<h2>🌾 Key Features</h2>
+
+<p>✔ 🛰️Satellite-Based Crop Monitoring</p>
+
+<p>✔ 💦NDVI & NDMI Analysis</p>
+
+<p>✔ 🌿Crop Type Identification</p>
+
+<p>✔ 🌱Growth Stage Detection</p>
+
+<p>✔ 💦Moisture Stress Detection</p>
+
+<p>✔💧 Smart Irrigation Recommendation</p>
+
+<p>✔ 🧑‍🌾Interactive GIS Field Selection</p>
+
+<p>✔ AI-Powered Decision Support Dashboard</p>
+```
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="dashboard-panel">
+
+        <h2>🌾 Farm Dashboard</h2>
+
+        <div id="info">
+            Draw a farm boundary and click Analyze.
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div id="loadingOverlay">
+
+    <div class="loader-card">
+
+        <div class="satellite">
+            🛰️
+        </div>
+
+        <h2>Analyzing Farm...</h2>
+
+        <p id="loadingText">
+            Connecting to Google Earth Engine...
+        </p>
+
+        <div class="progress">
+
+            <div id="progressBar"></div>
+
+        </div>
+
+    </div>
+
+</div>
+<script src="app.js"></script>
+
+</body>
+
+</html>
