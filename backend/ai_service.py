@@ -1,12 +1,22 @@
 import ee
 import os
+from dotenv import load_dotenv
 from datetime import datetime, date
 
+# Load .env from backend folder
+load_dotenv()
+
+PROJECT_ID = os.getenv("GEE_PROJECT_ID")
 SERVICE_ACCOUNT = os.getenv("GEE_SERVICE_ACCOUNT")
+KEY_PATH = os.getenv("GEE_KEY_PATH")
+
+print("PROJECT_ID:", PROJECT_ID)
+print("SERVICE_ACCOUNT:", SERVICE_ACCOUNT)
+print("KEY_PATH:", KEY_PATH)
 
 credentials = ee.ServiceAccountCredentials(
     SERVICE_ACCOUNT,
-    os.getenv("GEE_KEY_PATH")
+    KEY_PATH
 )
 
 ee.Initialize(
